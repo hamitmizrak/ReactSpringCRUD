@@ -17,9 +17,24 @@ class CreateEmployeeComponent extends Component {
         this.saveOrUpdateEmployee = this.saveOrUpdateEmployee.bind(this);
     }
 
-    // step 3
-    componentDidMount(){
 
+    //CHANGEFIRST
+    changeFirstNameHandler= (event) => {
+        this.setState({firstName: event.target.value});
+    }
+
+    changeLastNameHandler= (event) => {
+        this.setState({lastName: event.target.value});
+    }
+
+    changeEmailHandler= (event) => {
+        this.setState({emailId: event.target.value});
+    }
+
+
+    // step 3
+    //COMPONENTDIDMOUNT
+    componentDidMount(){
         // step 4
         if(this.state.id === '_add'){
             return
@@ -33,6 +48,8 @@ class CreateEmployeeComponent extends Component {
             });
         }        
     }
+
+    //KAYDET
     saveOrUpdateEmployee = (e) => {
         e.preventDefault();
         let employee = {firstName: this.state.firstName, lastName: this.state.lastName, emailId: this.state.emailId};
@@ -49,23 +66,13 @@ class CreateEmployeeComponent extends Component {
             });
         }
     }
-    
-    changeFirstNameHandler= (event) => {
-        this.setState({firstName: event.target.value});
-    }
 
-    changeLastNameHandler= (event) => {
-        this.setState({lastName: event.target.value});
-    }
-
-    changeEmailHandler= (event) => {
-        this.setState({emailId: event.target.value});
-    }
-
+    //CANCEL
     cancel(){
         this.props.history.push('/employees');
     }
 
+    //GETTITLE
     getTitle(){
         if(this.state.id === '_add'){
             return <h3 className="text-center">Add Employee</h3>
@@ -73,16 +80,15 @@ class CreateEmployeeComponent extends Component {
             return <h3 className="text-center">Update Employee</h3>
         }
     }
+
+    //RENDER
     render() {
         return (
-            <div>
-                <br></br>
+            <div> <br></br>
                    <div className = "container">
                         <div className = "row">
                             <div className = "card col-md-6 offset-md-3 offset-md-3">
-                                {
-                                    this.getTitle()
-                                }
+                                {this.getTitle()}
                                 <div className = "card-body">
                                     <form>
                                         <div className = "form-group">
@@ -100,18 +106,15 @@ class CreateEmployeeComponent extends Component {
                                             <input placeholder="Email Address" name="emailId" className="form-control" 
                                                 value={this.state.emailId} onChange={this.changeEmailHandler}/>
                                         </div>
-
                                         <button className="btn btn-success" onClick={this.saveOrUpdateEmployee}>Save</button>
                                         <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
                                     </form>
                                 </div>
                             </div>
                         </div>
-
                    </div>
             </div>
         )
     }
 }
-
 export default CreateEmployeeComponent

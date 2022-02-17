@@ -13,28 +13,37 @@ class ListEmployeeComponent extends Component {
         this.deleteEmployee = this.deleteEmployee.bind(this);
     }
 
+    //ADD
+    addEmployee(){
+        this.props.history.push('/add-employee/_add');
+    }
+
+    //DELETE
     deleteEmployee(id){
         EmployeeService.deleteEmployee(id).then( res => {
             this.setState({employees: this.state.employees.filter(employee => employee.id !== id)});
         });
     }
+
+    //VIES
     viewEmployee(id){
         this.props.history.push(`/view-employee/${id}`);
     }
+
+    //EDIT
     editEmployee(id){
         this.props.history.push(`/add-employee/${id}`);
     }
 
+    //DIDMOUNT: service database
     componentDidMount(){
         EmployeeService.getEmployees().then((res) => {
             this.setState({ employees: res.data});
         });
     }
 
-    addEmployee(){
-        this.props.history.push('/add-employee/_add');
-    }
 
+//RENDER:ekranda gösterme
     render() {
         return (
             <div>
