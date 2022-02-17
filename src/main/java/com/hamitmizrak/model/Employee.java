@@ -1,4 +1,4 @@
-package com.hamitmizrak.reactspringcrud.model;
+package com.hamitmizrak.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

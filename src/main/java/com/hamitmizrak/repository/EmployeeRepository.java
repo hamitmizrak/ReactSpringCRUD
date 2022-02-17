@@ -1,6 +1,6 @@
-package com.hamitmizrak.reactspringcrud.repository;
+package com.hamitmizrak.repository;
 
-import com.hamitmizrak.reactspringcrud.model.Employee;
+import com.hamitmizrak.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

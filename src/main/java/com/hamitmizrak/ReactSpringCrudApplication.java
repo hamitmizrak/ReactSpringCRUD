@@ -1,4 +1,4 @@
-package com.hamitmizrak.reactspringcrud;
+package com.hamitmizrak;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

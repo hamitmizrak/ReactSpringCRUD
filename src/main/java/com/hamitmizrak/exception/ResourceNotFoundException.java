@@ -1,4 +1,4 @@
-package com.hamitmizrak.reactspringcrud.exception;
+package com.hamitmizrak.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
