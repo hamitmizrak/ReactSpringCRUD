@@ -23,8 +23,8 @@ public class EmployeeServiceImpl implements EmployeeServices {
     private ModelMapper modelMapper;
 
 
+    //LIST
     // http://localhost:8080/api/v1/employees
-    // get all employees
     @GetMapping("/employees")
     @Override
     public List<EmployeeDto> getAllEmployees(){
@@ -37,9 +37,20 @@ public class EmployeeServiceImpl implements EmployeeServices {
         return  listDto;
     }
 
+    //FIND
+    // http://localhost:8080/api/v1/employees/1
+    // get employee by id rest api
+    @GetMapping("/employees/{id}")
+    @Override
+    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long id) {
+        EmployeeEntity employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
+        EmployeeDto teacherDto = EntityToDto(employee);//model
+        return ResponseEntity.ok(teacherDto);
+    }
+
     //SAVE
     // http://localhost:8080/api/v1/employees
-    // create employee rest api
     @PostMapping("/employees")
     public EmployeeDto createEmployee(@RequestBody  EmployeeDto employeeDto) { //@RequestBody
         EmployeeEntity employeeEntity = DtoToEntity(employeeDto);//ModelMapper
@@ -49,7 +60,6 @@ public class EmployeeServiceImpl implements EmployeeServices {
 
     //DELETE
     // http://localhost:8080/api/v1/employees
-    // delete employee rest api
     @DeleteMapping("/employees/{id}")
     @Override
     public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
@@ -62,21 +72,8 @@ public class EmployeeServiceImpl implements EmployeeServices {
         return ResponseEntity.ok(response);
     }
 
-
-    //LIST
-    // http://localhost:8080/api/v1/employees/1
-    // get employee by id rest api
-    @GetMapping("/employees/{id}")
-    @Override
-    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long id) {
-        EmployeeEntity employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
-        EmployeeDto teacherDto = EntityToDto(employee);//model
-        return ResponseEntity.ok(teacherDto);
-    }
-
+     //UPDATE
     // http://localhost:8080/api/v1/employees
-    // update employee rest api
     @PutMapping("/employees/{id}")
     @Override
     public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Long id, @RequestBody EmployeeDto employeeDetails){
@@ -93,8 +90,6 @@ public class EmployeeServiceImpl implements EmployeeServices {
         EmployeeDto teacherDto = EntityToDto(updatedEmployee);//model
         return ResponseEntity.ok(teacherDto);
     }
-
-
 
 
 

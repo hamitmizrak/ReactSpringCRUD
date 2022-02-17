@@ -25,55 +25,50 @@ import org.springframework.web.bind.annotation.RestController;
 public class EmployeeRestController {
 
 
-	@Autowired
-	public EmployeeServices employeeServices;
+    @Autowired
+    public EmployeeServices employeeServices;
 
-	//GET LIST
-	// http://localhost:8080/api/v1/employees
-	// get all employees
-	@GetMapping("/employees")
-	public List<EmployeeDto> getAllEmployees() {
-		List<EmployeeDto> teacherDto = (List<EmployeeDto>) employeeServices.getAllEmployees();
-		return teacherDto;
-	}
+    //LIST
+    // http://localhost:8080/api/v1/employees
+    @GetMapping("/employees")
+    public List<EmployeeDto> getAllEmployees() {
+        List<EmployeeDto> teacherDto = (List<EmployeeDto>) employeeServices.getAllEmployees();
+        return teacherDto;
+    }
+
+    //FIND
+    // http://localhost:8080/api/v1/employees/1
+    @GetMapping("/employees/{id}")
+    public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long id) {
+        List<EmployeeDto> teacherDto = (List<EmployeeDto>) employeeServices.getAllEmployees();
+        return ResponseEntity.ok(teacherDto.get(0));
+    }
+
+    //SAVE
+    // http://localhost:8080/api/v1/employees
+    @PostMapping("/employees")
+    public EmployeeDto createEmployee(@RequestBody EmployeeDto teacherDto) {
+        employeeServices.createEmployee(teacherDto);
+        return teacherDto;
+    }
+
+    //UPDATE
+    // http://localhost:8080/api/v1/employees/2
+    @PutMapping("/employees/{id}")
+    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Long id, @RequestBody EmployeeDto employeeDetails) {
+        employeeServices.updateEmployee(id, employeeDetails);
+        return ResponseEntity.ok(employeeDetails);
+    }
+
+    //DELETE
+    // http://localhost:8080/api/v1/employees/7
+    @DeleteMapping("/employees/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id) {
+        employeeServices.deleteEmployee(id);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
+    }
 
 
-	// http://localhost:8080/api/v1/employees/1
-	// get employee by id rest api
-	@GetMapping("/employees/{id}")
-	public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long id) {
-		List<EmployeeDto> teacherDto = (List<EmployeeDto>) employeeServices.getAllEmployees();
-		return ResponseEntity.ok(teacherDto.get(0));
-	}
-
-	//POST
-	// http://localhost:8080/api/v1/employees
-	// create employee rest api
-	@PostMapping("/employees")
-	public EmployeeDto createEmployee(@RequestBody EmployeeDto teacherDto) {
-		employeeServices.createEmployee(teacherDto);
-		return teacherDto;
-	}
-
-
-
-	// http://localhost:8080/api/v1/employees
-	// update employee rest api
-	@PutMapping("/employees/{id}")
-	public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Long id, @RequestBody EmployeeDto employeeDetails){
-		employeeServices.updateEmployee(id,employeeDetails);
-		return ResponseEntity.ok(employeeDetails);
-	}
-
-	// http://localhost:8080/api/v1/employees
-	// delete employee rest api
-	@DeleteMapping("/employees/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
-		employeeServices.deleteEmployee(id);
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
-		return ResponseEntity.ok(response);
-	}
-	
-	
 }
