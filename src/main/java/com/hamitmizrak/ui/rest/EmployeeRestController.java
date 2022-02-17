@@ -6,9 +6,6 @@ import java.util.Map;
 
 import com.hamitmizrak.business.dto.EmployeeDto;
 import com.hamitmizrak.business.services.EmployeeServices;
-import com.hamitmizrak.exception.ResourceNotFoundException;
-import com.hamitmizrak.data.entity.EmployeeEntity;
-import com.hamitmizrak.data.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/")
-public class EmployeeController {
+public class EmployeeRestController {
 
 
 	@Autowired
