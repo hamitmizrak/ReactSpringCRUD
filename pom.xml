@@ -23,16 +23,6 @@
 
 
     <dependencies>
-        <!-- swagger open-api-3.0-->
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.6.5</version>
-        </dependency>
-
-
-
-
         <!-- model mapper -->
         <dependency>
             <groupId>org.modelmapper</groupId>
@@ -40,11 +30,33 @@
             <version>2.4.4</version>
         </dependency>
 
+        <!-- swagger open-api-3.0-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.6.5</version>
+        </dependency>
+
         <!--jpa-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+
+        <!--  mysql-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!--h2database-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
 
         <!--security  Comment out,build-->
         <dependency>
@@ -65,8 +77,6 @@
             <artifactId>gson</artifactId>
             <version>2.8.6</version>
         </dependency>
-
-
 
 
         <!--thymeleaf-->
@@ -92,19 +102,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!--  mysql-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!--h2database-->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
 
         <!--Junit Test-->
         <dependency>

@@ -4,7 +4,6 @@ import com.hamitmizrak.bean.PasswordEncoderBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -18,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -48,34 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder.passwordEncoder());
     }
 
-
-
-    //burası swagger kullanıyorsanız gerekli
-    //http://localhost:8080/swagger-ui.html
-    private static final String[] AUTH_WHITELIST = {
-            // -- Swagger UI v2
-            "/v2/api-docs",
-            "/swagger-resources",
-            "/swagger-resources/**",
-            "/configuration/ui",
-            "/configuration/security",
-            "/swagger-ui.html",
-            "/swagger-ui",
-            "/swagger-ui/index.html",
-            "/webjars/**",
-            // -- Swagger UI v3 (OpenAPI)
-            "/v3/api-docs/**",
-            "/swagger-ui/**"
-            // other public endpoints of your API may be appended to this array
-    };
-
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().mvcMatchers(HttpMethod.OPTIONS, "/**");
-//        web.ignoring().antMatchers(AUTH_WHITELIST);
-//    }
-
-
+    //swagger
+    //http://localhost:8080/swagger-ui/index.html
     @Override
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/swagger-ui/**",
@@ -92,9 +65,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.cors().and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/api/v1/index", "/success","/login").permitAll()
+                .antMatchers("/", "/api/v1/index", "/success", "/login").permitAll()
+                .antMatchers("/api/v1/employees/**").permitAll()
                 .antMatchers("/authenticate", "/register").permitAll()
-               // .antMatchers(AUTH_WHITELIST).permitAll()
+                // .antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
