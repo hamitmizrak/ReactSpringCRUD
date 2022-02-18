@@ -1,6 +1,7 @@
 package com.hamitmizrak.jwt;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.hamitmizrak.data.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,12 +12,7 @@ import java.util.Date;
 @Entity
 @Table(name = "user")
 @Getter @Setter
-public class DAOUser {
-
-    @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class DAOUser extends BaseEntity {
 
     @Column
     private String username;
