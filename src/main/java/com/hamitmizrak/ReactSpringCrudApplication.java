@@ -2,7 +2,10 @@ package com.hamitmizrak;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+//Auditing aktif etmek için // Update/insert kim ve ne zaman yaptını kayıtını tutan Entity sınıfı
+@EnableJpaAuditing
 @SpringBootApplication
 //(exclude =
 //        {

@@ -20,12 +20,12 @@ public class EmployeeRestController {
     @Autowired
     public EmployeeServices employeeServices;
 
-    //LIST
-    // http://localhost:8080/
-    @GetMapping("/")
+    // ROOT
+    // http://localhost:8080/api/v1/index
+    @GetMapping("/index")
     @ResponseBody
     public String  getRoot() {
-        return "Merhaba Ana sayfa";
+        return "index Sayfası";
     }
 
     //LIST
